@@ -1,4 +1,5 @@
 # LaTeX intermediate and output files
+*.vrb
 *.aux
 *.bbl
 *.blg
@@ -19,8 +20,12 @@
 
 # LaTeX project files
 *.dvi
-*.pdf
+# *.pdf
 *.ps
+
+# Image Files
+*.png
+*.mp4
 
 # Generated files by various editors
 *~ 
@@ -32,3 +37,8 @@
 # Directories
 _build/
 latex.out/
+
+*/mynotes.txt
+
+### Mac OS ###
+*.DS_Store

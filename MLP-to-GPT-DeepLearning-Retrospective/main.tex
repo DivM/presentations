@@ -1,5 +1,6 @@
-%! TeX program = lualatex
+%! TeX program = pdflatex
 \documentclass[10pt]{beamer}
+%% ! TeX program = lualatex
 
 %% Based on the original theme by Matthias Vogelgesang
 
@@ -14,6 +15,14 @@
 
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{graphicx} %LaTeX package to import graphics
+\graphicspath{{images/}} %configuring the graphicx package
+
+\usepackage{animate}
+
+\usepackage{caption}
+\captionsetup{font=small}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% UNCC Theme Adjustments %%
@@ -46,6 +55,7 @@
 \setlength{\metropolis@progressinheadfoot@linewidth}{2pt}
 \setlength{\metropolis@titleseparator@linewidth}{2pt}
 \setlength{\metropolis@progressonsectionpage@linewidth}{2pt}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% UNCC Theme Adjustments %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,222 +67,509 @@
 
 \maketitle
 
-\begin{frame}[fragile]{What we plan to cover}
+% %=======================================================================================================================
+% \begin{frame}[fragile]{What we plan to cover}
+%
+% 	- Make this the last slide you prepare
+%
+% 	% - Idea is\\
+% 	% Goal (aka why should I care)\\
+% 	% - If you are reading a research paper or referencing PyTorch/TF reference (you should be able to connect it to something)\\
+% 	% - What's backprop\\
+% 	% - linear regression\\
+% 	% - MLP\\
+% 	% - what's non-linearity\\
+% 	% - main mathematical equation\\
+% 	% - what are usages\\
+% 	% - special cases\\
+% 	% - RNN, CNN, GRU, LSTM\\
+% 	% - Word Embeddings\\
+% 	% - Language Models\\
+% 	% - seq-to-seq models (explain the concept of time)\\
+% 	% - explain how this create a time boundation (the issue solved by transformer later)\\
+% 	% - What's (general or cross) attention?\\
+% 	% - What's self attention\\
+% 	% - Multi-headed attention\\
+% 	%
+% 	% - Transformers\\
+% 	% - BERT\\
+% 	% - GPT\\
+% 	% - LLAMA\\
+% 	% - MISTRAL\\
+% 	% - Gemini / Gemma\\
+% 	% - BARD\\
+% 	% - Orca\\
+% 	% - MPT-7B\\
+% 	% - T5
+% 	% - DeciLM-7B
+% 	%
+% 	% % any other relevant state-of-the-art models\\
+% 	% - Topics for future / Things to look out for in DL space :\\
+% 	% - RAG\\
+% 	% % Look up recent research (+ chatGPT, Vishruit, Roshin etc.)
+% 	%
+% 	% Why should I care:
+%
+% \end{frame}
 
-	- Idea is
-	Goal (aka why should I care)
-	- If you are reading a research paper or referencing PyTorch/TF reference (you should be able to connect it to
-	something)
-	- What's backprop
-	- linear regression
-	- MLP
-	- what's non-linearity
-	- main mathematical equation
-	- what are usages
-	- special cases
-	- RNN, CNN, GRU, LSTM
-	- Word Embeddings
-	- Language Models
-	- seq-to-seq models (explain the concept of time)
-	- explain how this create a time boundation (the issue solved by transformer later)
-	- What's (general or cross) attention?
-	- What's self attention
-	- Multi-headed attention
-	- Transformers
-
-	Why should I care:
-
-\end{frame}
-
+%=======================================================================================================================
 \begin{frame}{Table of contents}
 	\setbeamertemplate{section in toc}[sections numbered]
 	\tableofcontents%[hideallsubsections]
 \end{frame}
 
-\section[Multi-layered Perceptron]{mlp-section}
+%#######################################################################################################################
+\section[Pre-Transformer Developments]{Pre-Transformer Developments}
 
-\begin{frame}[fragile]{ Multi-layered Perceptron }
+%=======================================================================================================================
+\begin{frame}[fragile]{ Multi-layered Perceptron (1960s)}
 
-	A \textbf{multilayer perceptron (MLP)} is a name for a modern feedforward artificial neural network
+	A \textbf{Multi-Layer Perceptron (MLP)} is a name for a modern feedforward artificial neural network
 	\textit{consisting of fully connected neurons with a nonlinear activation function, organized in at least three
-		layers}.
+		layers}. Modern feedforward networks are trained using the \textbf{backpropagation method} and are
+	colloquially referred to as the \textit{\textbf{"vanilla"}} neural networks.
 
-
-	Modern feedforward networks are trained using the backpropagation method and are colloquially referred to as the
-	"vanilla" neural networks.
-
-\end{frame}
-
-\begin{frame}[fragile]{ Multi-layered Perceptron }
-
-	Timeline[edit] In 1958, a layered network of perceptrons, consisting of an input layer, a hidden layer with
-	randomized weights that did not learn, and an output layer with learning connections, was introduced already by
-	Frank Rosenblatt in his book Perceptron.[8][9][10] This extreme learning machine[11][10] was not yet a deep
-	learning network. In 1965, the first deep-learning feedforward network, not yet using stochastic gradient
-	descent, was published by Alexey Grigorevich Ivakhnenko and Valentin Lapa, at the time called the Group Method
-	of Data Handling.[12][13][10]
-
-	In 1967, a deep-learning network, which used stochastic gradient descent for the first time, able to classify
-	non-linearily separable pattern classes, was published by Shun'ichi Amari.[14] Amari's student Saito conducted
-	the computer experiments, using a five-layered feedforward network with two learning layers. In 1970, modern
-	backpropagation method, an efficient application of a chain-rule-based supervised learning,[15][16] was for the
-	first time published by the Finnish researcher Seppo Linnainmaa.[2][17][10] The term (i.e. "back-propagating
-	errors") itself has been used by Rosenblatt himself,[9] but he did not know how to implement it,[10] although a
-	continuous precursor of backpropagation was already used in the context of control theory in 1960 by Henry J.
-	Kelley.[3][10] It is known also as a reverse mode of automatic differentiation.
-
-	In 1982, backpropagation was applied in the way that has become standard, for the first time by Paul
-	Werbos.[5][10]
-
-	In 1985, an experimental analysis of the technique was conducted by David E. Rumelhart et al.[6] Many
-	improvements to the approach have been made in subsequent decades,.[10]
-
-	In 1990s, an (much simpler) alternative to using neural networks, although still related[18] support vector
-	machine approach was developed by Vladimir Vapnik and his colleagues. In addition to performing linear
-	classification, they were able to efficiently perform a non-linear classification using what is called the
-	kernel trick, using high-dimensional feature spaces.
-
-	In 2003, interest in backpropagation networks returned due to the successes of deep learning being applied to
-	language modelling by Yoshua Bengio with co-authors.[19]
-
-	In 2017, modern transformer architectures has been introduced.[20][21]
-
-	In 2021, a very simple NN architecture combining two deep MLPs with skip connections and layer normalizations
-	was designed and called MLP-Mixer; its realizations featuring 19 to 431 millions of parameters were shown to be
-	comparable to vision transformers of similar size on ImageNet and similar image classification tasks.[22]
-
-	\href{https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.15458&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false}{Tensorflow Playground}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{mlp_main}
+		\caption{
+			\href{https://playground.tensorflow.org/}{Tensorflow Playground}
+		}
+	\end{figure}
 
 \end{frame}
 
-\section[Recurrent Neural Network]{rnn}
+%=======================================================================================================================
+\begin{frame}[fragile]{Recurrent Neural Networks (1980s)}
 
-\begin{frame}[fragile]{Recurrent Neural Network}
+	\textbf{Recurrent Neural Networks (RNNs)} are a class of neural networks designed for processing sequential
+	data. The key differentiator with RNNs is the \textit{hidden state} which capture information (context) about
+	the sequence so far, enabling them to "remember" previous inputs.
+	\begin{equation}
+		h_t = \tanh(W_h * h_{t-1} + W_x * x_t + b)
+	\end{equation}
 
-	Enable the theme by loading
+	% ### Key Features of RNNs:
+
+	% **Sequential Data Handling:** RNNs can take sequences of variable length as input, making them suitable for
+	% tasks like language modeling and machine translation.
+
+	% - **Context Preservation**: RNNs maintain a hidden state that captures information from previous time steps, allowing
+	% them to remember previous words and their contexts when processing current words. This capability is essential for
+	% understanding language, where context can drastically change the meaning of a sentence.
+
+	% **Shared Parameters:** The same parameters (weights) are used across all steps of the sequence, which reduces
+	% the total number of parameters compared to fully connected networks.
+
+	% - **Flexibility with Sequence Lengths**: RNNs can process sequences of varying lengths without requiring the input data
+	% to be padded or truncated to a fixed size. This is important for NLP, where sentences and documents can vary greatly
+	% in length.
+
+	% ### Challenges:
+
+	% 1. **Vanishing and Exploding Gradients:** During training, the gradients of the loss function can become very small (vanish) or very large (explode), making it difficult to learn long-range dependencies.
+
+	% 2. **Training Complexity:** Due to their recurrent nature, RNNs can be more challenging to train than feedforward neural networks.
+
+	% ### Applications:
+
+	% 1. **Natural Language Processing:**
+	% - Language modeling, text generation, machine translation, and sentiment analysis.
+
+	% 2. **Time Series Prediction:**
+	% - Stock price forecasting, weather prediction, and anomaly detection in sequences.
+
+	% 3. **Speech Recognition:**
+	% - Converting spoken language into text.
+
+	% ### Example Use Case: Language Modeling
+
+	% In language modeling, RNNs are used to predict the next word in a sentence. Given a sequence of words, the RNN
+	% learns to model the probability distribution of the next word. This capability is essential for applications
+	% like predictive text input and machine translation.
+
+	\begin{figure}[h]
+		\centering
+		% TODO: Update this!
+		% \animategraphics[autoplay,loop,width=0.60\textwidth]{35}{images/rnn_1/rnn_1-}{0}{35}
+		\animategraphics[autoplay,loop,width=0.75\textwidth]{30}{images/rnn_1/rnn_1-}{0}{408}
+		\caption{jalammar.github.io}
+	\end{figure}
 
 \end{frame}
 
-\section[LSTM]{lstm}
+%=======================================================================================================================
+\begin{frame}[fragile]{Vanishing and Exploding Gradients}
 
-\begin{frame}[fragile]{LSTM}
+	The vanishing and exploding gradient problems are common issues encountered during the training of recurrent
+	neural networks (RNNs) due to large number of steps/layers in the backpropagation process wherein the gradients
+	either decrease or increase exponentially in which case they become unusable (vanishing gradients carry too
+	little information; exploding gradients are too unstable).
 
-	Enable the theme by loading
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{vanishing_gradients}
+		% \caption{
+		% 	\href{https://playground.tensorflow.org/}{Tensorflow Playground}
+		% }
+	\end{figure}
+
+	% ### Mitigating Strategies:
+
+	% 1. **Weight Initialization:** Using appropriate initialization methods for network weights, such as Xavier or He
+	% initialization, can help alleviate both vanishing and exploding gradient problems by ensuring that gradients
+	% neither vanish nor explode as they propagate through the network.
+	%
+	% 2. **Activation Functions:** Choosing activation functions that avoid saturation (e.g., ReLU, Leaky ReLU) can
+	% help mitigate the vanishing gradient problem by allowing gradients to propagate more effectively through the
+	% network.
+	%
+	% 3. **Gradient Clipping:** Limiting the magnitude of gradients during training (gradient clipping) can prevent
+	% the exploding gradient problem by ensuring that gradients do not become too large.
+	%
+	% 4. **Normalization Techniques:** Batch normalization and layer normalization can help stabilize training and
+	% mitigate both vanishing and exploding gradient problems by normalizing the input to each layer.
+	%
+	% 5. **Architectural Modifications:** Using architectures like Long Short-Term Memory (LSTM) or Gated Recurrent
+	% Unit (GRU) in RNNs can help mitigate the vanishing gradient problem by introducing mechanisms to better capture
+	% long-range dependencies.
+	%
+	% By applying these strategies, practitioners can address the vanishing and exploding gradient problems, allowing
+	% for more stable and effective training of deep neural networks.
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Long Short-Term Memory (LSTM)}
+
+	\textit{It’s difficult for vanilla RNNs to learn to preserve information over many timesteps. How about an RNN with
+		memory?}
+
+	Long Short-Term Memory (LSTM) is a type of RNN architecture designed to address the traditional RNN's difficulty
+	in learning long-term dependencies due to the vanishing gradient problem.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{LSTM}
+		\caption{CS224N : NLP with Deep Learning}
+	\end{figure}
+
+\end{frame}
+
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Long Short-Term Memory (LSTM)}
+
+	LSTM has following key components:
+
+	\begin{itemize}
+		\item Memory Cell: Maintains information over time.
+		\item Forget Gate: Decides what information to throw away from cell-state.
+		\item Input Gate: Decides which new information to add to the cell-state.
+		\item Output Gate: Controls how much of the cell state is exposed to the output.
+	\end{itemize}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{LSTM}
+	\end{figure}
 
 \end{frame}
 
 
 
-\section[Encoder - Decoder]{encoder-2-decoder}
+%=======================================================================================================================
+\begin{frame}[fragile]{Recurrent Neural Networks}
 
-\begin{frame}[fragile]{Encoder - Decoder Architectures}
-
-	Enable the theme by loading
-
-\end{frame}
-
-
-\section[Sequence-to-sequence models]{seq-2-seq}
-
-\begin{frame}[fragile]{Sequence To Sequence}
-
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\textwidth]{rnn_types}
+	\end{figure}
 
 \end{frame}
 
-\section[Attention]{attention}
+%=======================================================================================================================
+\begin{frame}[fragile]{Recurrent Neural Networks : Sequence-To-Sequence}
 
+	RNNs are often used in applications where input and output are in sequence format e.g. machine translation, text
+	prediction, speech recognition, stock price forecasting etc.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{seq2seq_explained}
+		\caption{Sequence to Sequence Learning with Neural Networks by Ilya Sutskever, et al}
+	\end{figure}
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Recurrent Neural Networks : Encoders \& Decoders}
+
+	The encoder processes the input sequence and distills it into a fixed-length representation, often referred to
+	as the \textbf{context vector}. This vector serves as a condensed summary of the input, capturing its essence
+	for the decoder to interpret.
+
+	% Challenges:
+	%
+	% When faced with lengthy and information-dense input sequences, the model’s ability to maintain relevance across
+	% the entire decoding process can wane. Not all fragments of the input’s context are equally pertinent at every
+	% juncture of text generation. For instance, in machine translation, the word ‘boy’ in the sentence ‘A boy is
+	% eating the banana’ does not necessitate the full breadth of the sentence’s context for accurate translation.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{encoder_decoder}
+		\caption{Seq2Seq Learning with Neural Networks by Ilya Sutskever, et al}
+	\end{figure}
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Recurrent Neural Network : Encoders \& Decoders}
+
+	\begin{figure}[h]
+		\centering
+		% TODO: Update this!
+		% \animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_2/seq2seq_2-}{1}{10}
+		\animategraphics[autoplay,loop,width=0.75\textwidth]{40}{images/seq2seq_2/seq2seq_2-}{1}{573}
+		% \caption{
+		% 	\href{https://playground.tensorflow.org/}{Tensorflow Playground}
+		% }
+	\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		% TODO: Update this!
+		% \animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_3/seq2seq_3-}{1}{10}
+		\animategraphics[autoplay,loop,width=0.75\textwidth]{35}{images/seq2seq_3/seq2seq_3-}{1}{519}
+		\caption{jalammar.github.io}
+	\end{figure}
+
+\end{frame}
+
+%#######################################################################################################################
+\section[Transformers]{Transformers}
+
+%=======================================================================================================================
 \begin{frame}[fragile]{Attention}
 
 	Enable the theme by loading
 
 \end{frame}
 
-
-\section[Self-Attention]{self-attention}
-
-\begin{frame}[fragile]{self-attention}
+%=======================================================================================================================
+\begin{frame}[fragile]{Self-Attention}
 
 	Enable the theme by loading
 
 \end{frame}
 
+%=======================================================================================================================
+\begin{frame}[fragile]{multi-head attention}
 
-\section[Transformers]{transformers}
+	Enable the theme by loading
 
+\end{frame}
+
+%=======================================================================================================================
 \begin{frame}[fragile]{Transformers}
 
-	Enable the theme by loading
+	Transformers and attention mechanisms have revolutionized the field of deep learning, offering a powerful way to
+	process sequential data and capture long-range dependencies.
+
+	In this article, we will put our serious hat on and truly explore the basics of transformers and the importance of
+	attention mechanisms in enhancing model performance and coherence.
+
+	Key Takeaways
+	- Attention mechanisms are crucial in transformers, allowing different tokens to be weighted based on their
+	importance, enhancing model context and output quality.
+	- Transformers operate on self-attention, enabling the capture of long-range dependencies without sequential
+	processing.
+	- Multi-head attention in transformers enhances model performance by allowing the model to focus on different
+	aspects of the input data simultaneously.
+	- Transformers outperform RNNs and LSTMs in handling sequential data due to their parallel processing
+	capabilities.
+	- Applications of transformers span across NLP, computer vision, and state-of-the-art model development.
+	Evolution of Transformers in Deep Learning
+
+	Long-Range Dependencies
+
+	One of the most salient features of Transformers is their innate ability to handle long-range dependencies with
+	aplomb. This characteristic is crucial for understanding the context in sequences where relevant information may be
+	separated by considerable distances. Traditional Recurrent Neural Networks (RNNs), including their more advanced
+	variants like Long Short-Term Memory (LSTM) networks, often grapple with the vanishing gradient problem. This issue
+	causes the influence of initial inputs to wane as the sequence progresses, making it arduous for these models to
+	maintain context over long sequences.
+
+	Transformers, by contrast, are not constrained by sequence length. Their self-attention mechanism computes the
+	relevance of all parts of the input sequence simultaneously, allowing for a global understanding of the data. This
+	is a game-changer for tasks that require the synthesis of information spread across an entire sequence, such as
+	document summarization or question answering.
+
+	The following list delineates the comparative advantages of Transformers over RNNs in handling long-range
+	dependencies:
+
+	Transformers: Utilize self-attention to weigh the importance of each element in the sequence, regardless of
+	distance. RNNs: Sequential processing can lead to diminished influence from earlier elements, especially in longer
+	sequences. LSTMs: Incorporate gating mechanisms to better retain information over time, but still face challenges
+	with very long sequences.
+
+	In essence, the Transformer architecture has redefined the landscape of sequence modeling by providing a robust
+	solution to the long-standing challenge of long-range dependencies. This has opened up new vistas in the field of
+	machine learning, particularly in complex tasks that require deep contextual understanding.
 
 \end{frame}
 
-\section[TransformerExamples]{tExamples}
+%#######################################################################################################################
+\section[Transformer-Based Models]{Transformer-Based Models}
 
-\subsection[BERT]{bert}
-
+%=======================================================================================================================
 \begin{frame}[fragile]{BERT}
 
 	Enable the theme by loading
 
 \end{frame}
 
-\subsection[GPT]{gpt}
-
+%=======================================================================================================================
 \begin{frame}[fragile]{GPT}
 
 	Enable the theme by loading
 
 \end{frame}
 
-{%
-\setbeamertemplate{frame footer}{My custom footer}
-\begin{frame}[fragile]{Frame footer}
-	\themename defines a custom beamer template to add a text to the footer. It can be set via
-	\begin{verbatim}\setbeamertemplate{frame footer}{My custom footer}\end{verbatim}
-\end{frame}
-}
+%=======================================================================================================================
+\begin{frame}[fragile]{Llama}
 
+	Enable the theme by loading
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Mistral}
+
+	Enable the theme by loading
+
+\end{frame}
+
+%#######################################################################################################################
+\section[Quickstart]{quickstart}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{starting a new nlp project}
+
+	Starting Point for a new project -\\
+	- Task based split\\
+	- General Papers\\
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{starting a new DL project}
+
+	Github Reference Guide
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{resources}
+
+	PapersWithCode\\
+	MadeWithML
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{resources}
+
+	Awesome NLP Papers
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Brief Recent History of NLP Deep-Learning Models}
+	\begin{itemize}
+
+		\item \textbf{1965:} \textit{First feedforward network} was published by Alexey Grigorevich Ivakhnenko and Valentin Lapa
+		      % Q: How was this network trained? 
+
+		\item \textbf{1967:} \textit{Stochastic gradient descent} was used for the first time for training neural network
+
+		\item \textbf{1982:} \textit{BackPropogation} method was applied in the way that has become standard, for the first time by Paul Werbos.
+
+		\item \textbf{1986:} David Rumelhart, Geoffrey Hinton, and Ronald Williams developed the idea of
+		      \textit{backpropagation through time (BPTT)} to train RNNs.
+
+		      % This was a significant step forward because it provided a method to train RNNs by unfolding them
+		      % in time and applying backpropagation.
+
+		\item \textbf{1997:} Sepp Hochreiter and Jürgen Schmidhuber introduced \textit{Long Short-Term Memory (LSTM)} networks.
+
+		      % LSTMs addressed the vanishing gradient problem inherent in traditional RNNs, making it feasible
+		      % to learn long-term dependencies. LSTMs use memory cells and gating mechanisms to better capture
+		      % long-range dependencies in sequence data.
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Brief Recent History of NLP Deep-Learning Models}
+	\begin{itemize}
+
+		\item \textbf{2013:} Mikolov et al. developed \textit{Word2Vec} to produce word embeddings (dense vector
+		      representations of words in a continuous vector space).
+
+		      % Word2Vec is a set of neural network models designed to produce word embeddings, which are dense
+		      % vector representations of words in a continuous vector space. These embeddings capture semantic
+		      % relationships between words based on their context in a large corpus of text.
+
+		\item \textbf{2014:} Ilya Sutskever et al. introduced the \textit{Sequence-to-Sequence (Seq2Seq)} model,
+		      a type of RNN architecture which used \textit{encoder-decoder framework} for tasks such as
+		      machine translation.
+
+		      % - **Cho et al.** introduced the Gated Recurrent Unit (GRU), a simpler alternative to LSTMs that also addresses the
+		      % vanishing gradient problem and improves training efficiency.
+
+		\item \textbf{2015-2016:} \textit{Attention Mechanisms} were introduced to improve Seq2Seq models.
+
+		      % Attention allowed models to focus on different parts of the input sequence dynamically, greatly
+		      % enhancing the performance of RNNs in tasks like machine translation.
+
+		\item \textbf{2017:} Vaswani et al. published the \textit{"Attention Is All You Need"} paper, introducing
+		      the Transformer model.
+
+		      % Transformers, which rely entirely on self-attention mechanisms and dispense
+		      % with recurrence, began to replace RNNs and LSTMs in many sequence modeling tasks due to their
+		      % efficiency and superior performance on long sequences.
+
+		      % ### 2020s: RNNs in Context
+		      %
+		      % 11. **Present**:
+		      % - While Transformers and their derivatives (e.g., BERT, GPT, T5) have become the dominant models for many sequence
+		      % tasks, RNNs, LSTMs, and GRUs are still widely used, especially in applications where their specific properties are
+		      % advantageous, such as certain types of time-series forecasting, speech recognition, and applications with limited
+		      % computational resources.
+
+	\end{itemize}
+\end{frame}
+
+%=======================================================================================================================
 \begin{frame}{References}
-	Some references to showcase [allowframebreaks] \cite{knuth92,ConcreteMath,Simpson,Er01,greenwade93}
+	Some references to showcase [allowframebreaks] \cite{yang2023harnessing}
 \end{frame}
 
-\section{Conclusion}
+% %#######################################################################################################################
+% \section{Conclusion}
 
-\begin{frame}{Summary}
-
-	Get the source of this theme and the demo presentation from
-
-	\begin{center}\url{github.com/matze/mtheme}\end{center}
-
-	The theme \emph{itself} is licensed under a
-	\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
-		Attribution-ShareAlike 4.0 International License}.
-
-	\begin{center}\ccbysa\end{center}
-
-\end{frame}
-
-{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+%=======================================================================================================================
+{\setbeamercolor{palette primary}{fg=white, bg=UnccGreen}
 \begin{frame}[standout]
-	Questions?
+	\textbf{Questions?}
 \end{frame}
 }
 
-\appendix
-
-\begin{frame}[fragile]{Backup slides}
-	Sometimes, it is useful to add slides at the end of your presentation to
-	refer to during audience questions.
-
-	The best way to do this is to include the \verb|appendixnumberbeamer|
-	package in your preamble and call \verb|\appendix| before your backup slides.
-
-	\themename will automatically turn off slide numbering and progress bars for
-	slides in the appendix.
-\end{frame}
-
+%=======================================================================================================================
 \begin{frame}[allowframebreaks]{References}
 
-	\bibliography{demo}
+	\bibliography{main}
 	\bibliographystyle{abbrv}
 
 \end{frame}
