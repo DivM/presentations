@@ -122,7 +122,7 @@
 \section[Pre-Transformer Developments]{Pre-Transformer Developments}
 
 %=======================================================================================================================
-\begin{frame}[fragile]{ Multi-layered Perceptron (1960s)}
+\begin{frame}[fragile]{ Multi-layered Perceptron }
 
 	A \textbf{Multi-Layer Perceptron (MLP)} is a name for a modern feedforward artificial neural network
 	\textit{consisting of fully connected neurons with a nonlinear activation function, organized in at least three
@@ -140,7 +140,7 @@
 \end{frame}
 
 %=======================================================================================================================
-\begin{frame}[fragile]{Recurrent Neural Networks (1980s)}
+\begin{frame}[fragile]{Recurrent Neural Networks }
 
 	\textbf{Recurrent Neural Networks (RNNs)} are a class of neural networks designed for processing sequential
 	data. The key differentiator with RNNs is the \textit{hidden state} which capture information (context) about
@@ -149,50 +149,11 @@
 		h_t = \tanh(W_h * h_{t-1} + W_x * x_t + b)
 	\end{equation}
 
-	% ### Key Features of RNNs:
-
-	% **Sequential Data Handling:** RNNs can take sequences of variable length as input, making them suitable for
-	% tasks like language modeling and machine translation.
-
-	% - **Context Preservation**: RNNs maintain a hidden state that captures information from previous time steps, allowing
-	% them to remember previous words and their contexts when processing current words. This capability is essential for
-	% understanding language, where context can drastically change the meaning of a sentence.
-
-	% **Shared Parameters:** The same parameters (weights) are used across all steps of the sequence, which reduces
-	% the total number of parameters compared to fully connected networks.
-
-	% - **Flexibility with Sequence Lengths**: RNNs can process sequences of varying lengths without requiring the input data
-	% to be padded or truncated to a fixed size. This is important for NLP, where sentences and documents can vary greatly
-	% in length.
-
-	% ### Challenges:
-
-	% 1. **Vanishing and Exploding Gradients:** During training, the gradients of the loss function can become very small (vanish) or very large (explode), making it difficult to learn long-range dependencies.
-
-	% 2. **Training Complexity:** Due to their recurrent nature, RNNs can be more challenging to train than feedforward neural networks.
-
-	% ### Applications:
-
-	% 1. **Natural Language Processing:**
-	% - Language modeling, text generation, machine translation, and sentiment analysis.
-
-	% 2. **Time Series Prediction:**
-	% - Stock price forecasting, weather prediction, and anomaly detection in sequences.
-
-	% 3. **Speech Recognition:**
-	% - Converting spoken language into text.
-
-	% ### Example Use Case: Language Modeling
-
-	% In language modeling, RNNs are used to predict the next word in a sentence. Given a sequence of words, the RNN
-	% learns to model the probability distribution of the next word. This capability is essential for applications
-	% like predictive text input and machine translation.
-
 	\begin{figure}[h]
 		\centering
 		% TODO: Update this!
-		% \animategraphics[autoplay,loop,width=0.60\textwidth]{35}{images/rnn_1/rnn_1-}{0}{35}
-		\animategraphics[autoplay,loop,width=0.75\textwidth]{30}{images/rnn_1/rnn_1-}{0}{408}
+		\animategraphics[autoplay,loop,width=0.60\textwidth]{35}{images/rnn_1/rnn_1-}{0}{1}
+		% \animategraphics[autoplay,loop,width=0.75\textwidth]{30}{images/rnn_1/rnn_1-}{0}{408}
 		\caption{jalammar.github.io}
 	\end{figure}
 
@@ -242,11 +203,11 @@
 %=======================================================================================================================
 \begin{frame}[fragile]{Long Short-Term Memory (LSTM)}
 
-	\textit{It’s difficult for vanilla RNNs to learn to preserve information over many timesteps. How about an RNN with
-		memory?}
+	\textit{"It’s difficult for vanilla RNNs to learn to preserve information over many timesteps. How about an RNN with
+		memory?"}
 
-	Long Short-Term Memory (LSTM) is a type of RNN architecture designed to address the traditional RNN's difficulty
-	in learning long-term dependencies due to the vanishing gradient problem.
+	\textbf{Long Short-Term Memory (LSTM)} is a type of RNN architecture designed to address the traditional RNN's
+	difficulty in learning long-term dependencies due to the vanishing gradient problem.
 
 	\begin{figure}[h]
 		\centering
@@ -276,31 +237,29 @@
 
 \end{frame}
 
+% %=======================================================================================================================
+% \begin{frame}[fragile]{Recurrent Neural Networks}
+%
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width=0.6\textwidth]{rnn_types}
+% 	\end{figure}
+%
+% \end{frame}
 
-
-%=======================================================================================================================
-\begin{frame}[fragile]{Recurrent Neural Networks}
-
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.6\textwidth]{rnn_types}
-	\end{figure}
-
-\end{frame}
-
-%=======================================================================================================================
-\begin{frame}[fragile]{Recurrent Neural Networks : Sequence-To-Sequence}
-
-	RNNs are often used in applications where input and output are in sequence format e.g. machine translation, text
-	prediction, speech recognition, stock price forecasting etc.
-
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.75\textwidth]{seq2seq_explained}
-		\caption{Sequence to Sequence Learning with Neural Networks by Ilya Sutskever, et al}
-	\end{figure}
-
-\end{frame}
+% %=======================================================================================================================
+% \begin{frame}[fragile]{Recurrent Neural Networks : Sequence-To-Sequence}
+%
+% 	RNNs are often used in applications where input and output are in sequence format e.g. machine translation, text
+% 	prediction, speech recognition, stock price forecasting etc.
+%
+% 	\begin{figure}[h]
+% 		\centering
+% 		\includegraphics[width=0.75\textwidth]{seq2seq_explained}
+% 		\caption{Sequence to Sequence Learning with Neural Networks by Ilya Sutskever, et al.}
+% 	\end{figure}
+%
+% \end{frame}
 
 %=======================================================================================================================
 \begin{frame}[fragile]{Recurrent Neural Networks : Encoders \& Decoders}
@@ -319,7 +278,7 @@
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.75\textwidth]{encoder_decoder}
-		\caption{Seq2Seq Learning with Neural Networks by Ilya Sutskever, et al}
+		\caption{Seq2Seq Learning with Neural Networks by Ilya Sutskever, et al.}
 	\end{figure}
 
 \end{frame}
@@ -330,8 +289,8 @@
 	\begin{figure}[h]
 		\centering
 		% TODO: Update this!
-		% \animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_2/seq2seq_2-}{1}{10}
-		\animategraphics[autoplay,loop,width=0.75\textwidth]{40}{images/seq2seq_2/seq2seq_2-}{1}{573}
+		\animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_2/seq2seq_2-}{1}{2}
+		% \animategraphics[autoplay,loop,width=0.75\textwidth]{40}{images/seq2seq_2/seq2seq_2-}{1}{573}
 		% \caption{
 		% 	\href{https://playground.tensorflow.org/}{Tensorflow Playground}
 		% }
@@ -340,95 +299,180 @@
 	\begin{figure}[h]
 		\centering
 		% TODO: Update this!
-		% \animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_3/seq2seq_3-}{1}{10}
-		\animategraphics[autoplay,loop,width=0.75\textwidth]{35}{images/seq2seq_3/seq2seq_3-}{1}{519}
+		\animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_3/seq2seq_3-}{1}{2}
+		% \animategraphics[autoplay,loop,width=0.75\textwidth]{35}{images/seq2seq_3/seq2seq_3-}{1}{519}
 		\caption{jalammar.github.io}
 	\end{figure}
 
 \end{frame}
 
+%=======================================================================================================================
+\begin{frame}[fragile]{Recurrent Neural Network : Drawbacks}
+
+	RNNs have two primary drawbacks that have hindered the advancement of models in NLP applications:
+
+	\begin{itemize}
+
+		\item \textbf{Difficulty in Capturing Long-Term Dependencies:} Despite the introduction of LSTMs, which
+		      partially mitigated the vanishing gradient problem, RNN-based models still struggle to capture dependencies
+		      across lengthy sequences. This limitation is especially pronounced in tasks requiring the model to retain
+		      context over extended input sequences, as the entire context must be compressed into a single hidden state
+		      passed between encoder and decoder.
+
+		\item \textbf{Limited Parallelism:} RNNs process input sequences sequentially, where each time step depends on
+		      its predecessor. This sequential nature restricts parallel processing during both training and inference,
+		      unlike feedforward neural networks that can handle input in parallel.
+
+	\end{itemize}
+
+\end{frame}
+
 %#######################################################################################################################
-\section[Transformers]{Transformers}
+\section[Attention, Self-Attention, and Transformers]{Attention, Self-Attention, and Transformers}
+
+% %=======================================================================================================================
+% \begin{frame}[fragile]{Attention}
+%
+% 	As the bottleneck for RNN models was the \textit{context vector}, a technique called \textbf{"Attention"} was
+% 	proposed which allowed model to focus on relevant parts of input sequence as required by the task at hand preserving
+% 	the context from beginning to end.
+%
+% 	\begin{figure}[h]
+% 		\centering
+% 		% TODO: Update this!
+% 		\animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/seq2seq_4/seq2seq_4-}{1}{2}
+% 		% \animategraphics[autoplay,loop,width=0.75\textwidth]{31}{images/seq2seq_4/seq2seq_4-}{1}{494}
+% 		\caption{jalammar.github.io}
+% 	\end{figure}
+%
+% \end{frame}
 
 %=======================================================================================================================
 \begin{frame}[fragile]{Attention}
 
-	Enable the theme by loading
+	As the bottleneck for RNN models was the \textit{context vector}, a technique called \textbf{"Attention"} was
+	proposed which allowed model to focus on relevant parts of input sequence as required by the task at hand preserving
+	the context from beginning to end.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{attention_calculation}
+	\end{figure}
+
+	% \begin{figure}[h]
+	% 	\centering
+	% 	% TODO: Update this!
+	% 	\animategraphics[autoplay,loop,width=0.75\textwidth]{10}{images/attention_process/attention_process-}{1}{2}
+	% 	%\animategraphics[autoplay,loop,width=0.75\textwidth]{30}{images/attention_process/attention_process-}{1}{541}
+	% 	\caption{jalammar.github.io}
+	% \end{figure}
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Attention}
+
+	\begin{figure}[h]
+		\centering
+		% TODO: Update this!
+		\animategraphics[autoplay,loop,width=\textwidth]{10}{images/attention_tensor_dance/attention_tensor_dance-}{1}{2}
+		% \animategraphics[autoplay,loop,width=\textwidth]{30}{images/attention_tensor_dance/attention_tensor_dance-}{1}{931}
+		\caption{jalammar.github.io}
+	\end{figure}
+
+\end{frame}
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Attention}
+
+	As observed in the image below, the model learns from the training phase how to align words in the language pair.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{attention_alignment}
+	\end{figure}
+
+\end{frame}
+
+
+
+%=======================================================================================================================
+\begin{frame}[fragile]{Self-Attention}
+
+	Self Attention, as the name suggests, consists of attention score calculated for an input sequence and then applied
+	to itself. Expanding upon the attention compution from previous slide.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{attention_calculation_annotated}
+	\end{figure}
 
 \end{frame}
 
 %=======================================================================================================================
 \begin{frame}[fragile]{Self-Attention}
 
-	Enable the theme by loading
+	Following is the mathematical (matrix) representation of self-attention for input token `\(X\)`. \(W^Q\), \(W^K\), and
+	\(W^V\) are weight matrices trained through unsupervised and supervised learning tasks.
+
+	\begin{columns}[c]
+		\column{0.4\textwidth}
+		\begin{center}
+			\includegraphics[width=\textwidth]{self_attention1}
+		\end{center}
+		\column{0.6\textwidth}
+		\begin{center}
+			\includegraphics[width=\textwidth]{self_attention2}
+		\end{center}
+	\end{columns}
 
 \end{frame}
 
 %=======================================================================================================================
-\begin{frame}[fragile]{multi-head attention}
+\begin{frame}[fragile]{Multi-Headed Self-Attention}
 
-	Enable the theme by loading
+	Multi-headed attention is just replication of self-attention multiple times which allow projection of input
+	embeddings into different representation subspaces.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{multi_head_attention}
+	\end{figure}
 
 \end{frame}
 
 %=======================================================================================================================
 \begin{frame}[fragile]{Transformers}
 
-	Transformers and attention mechanisms have revolutionized the field of deep learning, offering a powerful way to
-	process sequential data and capture long-range dependencies.
-
-	In this article, we will put our serious hat on and truly explore the basics of transformers and the importance of
-	attention mechanisms in enhancing model performance and coherence.
-
-	Key Takeaways
-	- Attention mechanisms are crucial in transformers, allowing different tokens to be weighted based on their
-	importance, enhancing model context and output quality.
-	- Transformers operate on self-attention, enabling the capture of long-range dependencies without sequential
-	processing.
-	- Multi-head attention in transformers enhances model performance by allowing the model to focus on different
-	aspects of the input data simultaneously.
-	- Transformers outperform RNNs and LSTMs in handling sequential data due to their parallel processing
-	capabilities.
-	- Applications of transformers span across NLP, computer vision, and state-of-the-art model development.
-	Evolution of Transformers in Deep Learning
-
-	Long-Range Dependencies
-
-	One of the most salient features of Transformers is their innate ability to handle long-range dependencies with
-	aplomb. This characteristic is crucial for understanding the context in sequences where relevant information may be
-	separated by considerable distances. Traditional Recurrent Neural Networks (RNNs), including their more advanced
-	variants like Long Short-Term Memory (LSTM) networks, often grapple with the vanishing gradient problem. This issue
-	causes the influence of initial inputs to wane as the sequence progresses, making it arduous for these models to
-	maintain context over long sequences.
-
-	Transformers, by contrast, are not constrained by sequence length. Their self-attention mechanism computes the
-	relevance of all parts of the input sequence simultaneously, allowing for a global understanding of the data. This
-	is a game-changer for tasks that require the synthesis of information spread across an entire sequence, such as
-	document summarization or question answering.
-
-	The following list delineates the comparative advantages of Transformers over RNNs in handling long-range
-	dependencies:
-
-	Transformers: Utilize self-attention to weigh the importance of each element in the sequence, regardless of
-	distance. RNNs: Sequential processing can lead to diminished influence from earlier elements, especially in longer
-	sequences. LSTMs: Incorporate gating mechanisms to better retain information over time, but still face challenges
-	with very long sequences.
-
-	In essence, the Transformer architecture has redefined the landscape of sequence modeling by providing a robust
-	solution to the long-standing challenge of long-range dependencies. This has opened up new vistas in the field of
-	machine learning, particularly in complex tasks that require deep contextual understanding.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\textwidth]{transformer_architecture}
+	\end{figure}
 
 \end{frame}
-
-%#######################################################################################################################
-\section[Transformer-Based Models]{Transformer-Based Models}
 
 %=======================================================================================================================
-\begin{frame}[fragile]{BERT}
+\begin{frame}[fragile]{Transformers: Encoder and Decoder}
 
-	Enable the theme by loading
+	\begin{columns}[c]
+		\column{0.4\textwidth}
+		\begin{itemize}
+			\item Encoder's job is to learn the semantics, structure and nitty-gritties of the language
+			\item Decoder's job is to do the calculation / computation and give the output for a given task (language
+			      modelling, question-answering, summarization etc.)
+		\end{itemize}
+		\column{0.6\textwidth}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.75\textwidth]{transformer_architecture2}
+		\end{figure}
+	\end{columns}
 
 \end{frame}
+
+
+%#######################################################################################################################
+\section[Generative Pre-trained Transformer (GPT)]{Generative Pre-trained Transformer (GPT)}
 
 %=======================================================================================================================
 \begin{frame}[fragile]{GPT}
@@ -437,53 +481,31 @@
 
 \end{frame}
 
-%=======================================================================================================================
-\begin{frame}[fragile]{Llama}
+% %#######################################################################################################################
+% \section[Quickstart]{quickstart}
+%
+% %=======================================================================================================================
+% \begin{frame}[fragile]{starting a new nlp project}
+%
+% 	Starting Point for a new project -\\
+% 	- Task based split\\
+% 	- General Papers\\
+%
+% \end{frame}
+%
+% %=======================================================================================================================
+% \begin{frame}[fragile]{starting a new DL project}
+%
+% 	Github Reference Guide
+%
+% \end{frame}
 
-	Enable the theme by loading
-
-\end{frame}
-
-%=======================================================================================================================
-\begin{frame}[fragile]{Mistral}
-
-	Enable the theme by loading
-
-\end{frame}
-
-%#######################################################################################################################
-\section[Quickstart]{quickstart}
-
-%=======================================================================================================================
-\begin{frame}[fragile]{starting a new nlp project}
-
-	Starting Point for a new project -\\
-	- Task based split\\
-	- General Papers\\
-
-\end{frame}
-
-%=======================================================================================================================
-\begin{frame}[fragile]{starting a new DL project}
-
-	Github Reference Guide
-
-\end{frame}
-
-%=======================================================================================================================
-\begin{frame}[fragile]{resources}
-
-	PapersWithCode\\
-	MadeWithML
-
-\end{frame}
-
-%=======================================================================================================================
-\begin{frame}[fragile]{resources}
-
-	Awesome NLP Papers
-
-\end{frame}
+% %=======================================================================================================================
+% \begin{frame}[fragile]{resources}
+%
+% 	Awesome NLP Papers
+%
+% \end{frame}
 
 %=======================================================================================================================
 \begin{frame}[fragile]{Brief Recent History of NLP Deep-Learning Models}
@@ -503,10 +525,6 @@
 		      % in time and applying backpropagation.
 
 		\item \textbf{1997:} Sepp Hochreiter and Jürgen Schmidhuber introduced \textit{Long Short-Term Memory (LSTM)} networks.
-
-		      % LSTMs addressed the vanishing gradient problem inherent in traditional RNNs, making it feasible
-		      % to learn long-term dependencies. LSTMs use memory cells and gating mechanisms to better capture
-		      % long-range dependencies in sequence data.
 
 	\end{itemize}
 \end{frame}
@@ -530,31 +548,39 @@
 
 		\item \textbf{2015-2016:} \textit{Attention Mechanisms} were introduced to improve Seq2Seq models.
 
-		      % Attention allowed models to focus on different parts of the input sequence dynamically, greatly
-		      % enhancing the performance of RNNs in tasks like machine translation.
-
 		\item \textbf{2017:} Vaswani et al. published the \textit{"Attention Is All You Need"} paper, introducing
 		      the Transformer model.
 
-		      % Transformers, which rely entirely on self-attention mechanisms and dispense
-		      % with recurrence, began to replace RNNs and LSTMs in many sequence modeling tasks due to their
-		      % efficiency and superior performance on long sequences.
-
-		      % ### 2020s: RNNs in Context
-		      %
-		      % 11. **Present**:
-		      % - While Transformers and their derivatives (e.g., BERT, GPT, T5) have become the dominant models for many sequence
-		      % tasks, RNNs, LSTMs, and GRUs are still widely used, especially in applications where their specific properties are
-		      % advantageous, such as certain types of time-series forecasting, speech recognition, and applications with limited
-		      % computational resources.
+		\item \textbf{2018:} Radford et al. published the \textit{"Improving Language Understanding by Generative
+			      Pre-Training"} paper, introducing the GPT-1 model.
 
 	\end{itemize}
 \end{frame}
 
 %=======================================================================================================================
-\begin{frame}{References}
-	Some references to showcase [allowframebreaks] \cite{yang2023harnessing}
+\begin{frame}[fragile]{Resources}
+
+	\begin{itemize}
+		\item Jay Alammar Blog (\href{https://jalammar.github.io/}{\color{UnccPink}{\underline{https://jalammar.github.io/}}})
+		\item Paper Discussion(s) by Tanay Mehta:
+		      \begin{itemize}
+			      \item \href{https://www.youtube.com/watch?v=adGf740I0e8}{\color{UnccPink}{\underline{Attention is all you need}}}
+			      \item \href{https://www.youtube.com/watch?v=X_haaed9Lfo}{\color{UnccPink}{\underline{Improving
+						            Language Understanding by Generative Pre-Training}}}
+		      \end{itemize}
+		\item
+		      \href{https://www.cs.princeton.edu/courses/archive/spring20/cos598C/lectures/lec4-pretraining.pdf}{\color{UnccPink}{\underline{
+					      Princeton COS 598C: Deep Learning for NLP lecture notes}}}
+		\item \href{https://www.youtube.com/watch?v=kCc8FmEb1nY}{\color{UnccPink}{\underline{Let's build GPT: from
+					      scratch, in code, spelled out}}} by Andrej Karpathy
+	\end{itemize}
+
 \end{frame}
+
+% %=======================================================================================================================
+% \begin{frame}{References}
+% 	Some references to showcase [allowframebreaks] \cite{yang2023harnessing}
+% \end{frame}
 
 % %#######################################################################################################################
 % \section{Conclusion}
@@ -566,12 +592,12 @@
 \end{frame}
 }
 
-%=======================================================================================================================
-\begin{frame}[allowframebreaks]{References}
-
-	\bibliography{main}
-	\bibliographystyle{abbrv}
-
-\end{frame}
+% %=======================================================================================================================
+% \begin{frame}[allowframebreaks]{References}
+%
+% 	\bibliography{main}
+% 	\bibliographystyle{abbrv}
+%
+% \end{frame}
 
 \end{document}
