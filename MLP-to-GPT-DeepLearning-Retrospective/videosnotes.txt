@@ -1,0 +1,80 @@
+=========================================================================================================================
+Attention is All You Need (link: https://www.youtube.com/watch?v=adGf740I0e8)
+=========================================================================================================================
+
+- Time before attention:
+  - RNN / LSTM
+  - Sequential : At one time only one word is passed through the network
+    - Bad because for a long sentence, the semantic connection / context over large lengths got lost
+
+- Attention:
+  - Simply the idea is certain words are of higher importance compared to other, which should get more focus
+  - Calculated by getting dot product of embedding form of a sentence with itself (which gives the similarity of each
+    word of a sentence with other words in the sentence).
+
+- Architecture:
+  - Tokenization (generating the words to numbers):
+    - Mapping of words from different languages to n-dimensional-vector-space
+    - Minor point towards Word2Vec
+  - Encoder and Decoder:
+    - Encoder job is to learn the semantics, structure and nitty-gritties of the language
+    - Decoder job is to do the calculation / computation and give the output
+      - Generate Text, Classification, Q/A, Summarization
+  - Input:
+    - Embedding: Semantic Embedding
+    - Positional Encoding: Map relative position of each word to a Sinosod function
+    - Both are added together to form the actual input to the transformer (encoder and decoder)
+  - Multi-Head Attention:
+    - It's H number of Scaled Dot-Product Attention running in parallel
+    - Attention:
+      - Formula:                      Attention(Q,K,V) = Softmax(Q * K_transpose / sqroot(d_k) ) * V
+                                                Softmax = e^x_i/summation(e^x_i)
+      here,
+                                    Q * K_transpose / sqroot(d_k) are also know as weights
+                                    Softmax(Q * K_transpose / sqroot(d_k)) is know as weighted-probabilities
+                                    For Self-Attention : V is also S (our original sentence)
+      - Q: Query
+      - K: Key
+      - V: Value
+    - All NNs have attention (implicit). Here, we are "explicitly" defining attention.
+    - Copy of original intermediate-output is sent forward (as a skip-connection), added and normalized.
+      - Why? Read "Metaformer is all you need"
+    - Masking:
+      - In decoder, we don't want our model to learn from the future or "right-side". So we take the embeddings to the
+        right and replace it with `-Inf` (negative infinity). Why? -Inf when passed through softmax, becomes 0.
+    - K, Q, V is passed in between different encoder cells and then from encoder to decoder.
+    - But, between encoder and decoder, only Query and Key are passed (not Value) which comes from decoder itself.
+    - Why is transformer SO popular and used in other models:
+      - Explicit (multi-headed) Attention (explained earlier):
+      - Can capture mode diverse features and relationships in the data and allow to focus on different part of input
+        sequence simultaneously.
+      - Multi-headed attention allows for parallel processing of the attention mechanisms, which can lead to more
+        efficient computation compared to a single, more complex attention mechanism trying to capture all aspects at
+        once.
+      - Dimensionality Reduction: Each attention head operates in a lower-dimensional subspace of the input (e.g.,
+        if the model dimension is d and there are h heads, each head works in a (d/h) dimensional space by
+          projecting the input into different subspaces). This allows the model to learn more nuanced features in
+          these lower-dimensional spaces and then combine them to give richer representation.
+
+- Examples of Transformers:
+  - BERT
+    - Encoder only model
+  - GPT
+    - Decoder only model
+    - Auto-regressive model
+      - E.g. 
+        - INPUT: The, OUTPUT: The boy
+        - INPUT: The boy, OUTPUT: The boy went
+        - INPUT: The boy went, OUTPUT: The boy went
+
+=========================================================================================================================
+Improving Language Understanding by Generative Pre-Training
+=========================================================================================================================
+
+
+
+
+
+
+
+
